@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CambioTrack — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+
+  <div class="auth-glow"></div>
+
+  <div id="auth-screen">
+    <div class="auth-box">
+
+      <div class="auth-logo">Cambio<span>Track</span></div>
+      <div class="auth-subtitle">// rastreador de cotações em tempo real</div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-btn-login" onclick="switchTab('login')">Login</button>
+        <button class="auth-tab" id="tab-btn-register" onclick="switchTab('register')">Cadastro</button>
+      </div>
+
+      <div class="error-msg" id="auth-error"></div>
+
+      <div id="tab-login">
+        <div class="form-group">
+          <label class="form-label" for="login-username">Usuário</label>
+          <input class="form-input" id="login-username" type="text" placeholder="seu_usuario" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Senha</label>
+          <input class="form-input" id="login-password" type="password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <button class="btn btn-primary" id="btn-login" onclick="doLogin()">Entrar</button>
+      </div>
+
+      <div id="tab-register" style="display:none">
+        <div class="form-group">
+          <label class="form-label" for="reg-username">Usuário</label>
+          <input class="form-input" id="reg-username" type="text" placeholder="seu_usuario" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-email">E-mail</label>
+          <input class="form-input" id="reg-email" type="email" placeholder="email@exemplo.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Senha</label>
+          <input class="form-input" id="reg-password" type="password" placeholder="••••••••" autocomplete="new-password">
+        </div>
+        <button class="btn btn-primary" id="btn-register" onclick="doRegister()">Criar conta</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="{% static 'js/auth.js' %}"></script>
+</body>
+</html>

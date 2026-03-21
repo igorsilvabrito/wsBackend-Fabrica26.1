@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CambioTrack — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+
+  <nav class="sidebar">
+  <div class="sidebar-logo">Cambio<span>Track</span></div>
+  <a class="nav-item active" href="/dashboard/"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a>
+  <a class="nav-item" href="/favoritas/"><i data-lucide="star" class="nav-icon"></i> Favoritas</a>
+  <a class="nav-item" href="/alertas/"><i data-lucide="bell" class="nav-icon"></i> Alertas</a>
+  <a class="nav-item" href="/historico/"><i data-lucide="clock" class="nav-icon"></i> Histórico</a>
+  <div class="sidebar-bottom">
+    <div class="user-info" id="sidebar-user"></div>
+    <button class="btn btn-outline" onclick="doLogout()">Sair</button>
+  </div>
+</nav>
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-title">Dashboard <span>//</span></div>
+      <div class="page-desc">consulte cotações em tempo real</div>
+    </div>
+
+    <div class="quick-pares">
+      <span class="quick-label">RÁPIDO:</span>
+      <div class="quick-par" onclick="setParAndSearch('USD-BRL')">USD-BRL</div>
+      <div class="quick-par" onclick="setParAndSearch('EUR-BRL')">EUR-BRL</div>
+      <div class="quick-par" onclick="setParAndSearch('BTC-BRL')">BTC-BRL</div>
+      <div class="quick-par" onclick="setParAndSearch('ARS-BRL')">ARS-BRL</div>
+      <div class="quick-par" onclick="setParAndSearch('GBP-BRL')">GBP-BRL</div>
+    </div>
+
+    <div class="cotacao-form">
+  <select class="form-input" id="cotacao-par">
+    <option value="">Selecione um par...</option>
+    <optgroup label="🇧🇷 Real Brasileiro">
+      <option value="USD-BRL">🇺🇸 Dólar americano (USD-BRL)</option>
+      <option value="EUR-BRL">🇪🇺 Euro (EUR-BRL)</option>
+      <option value="GBP-BRL">🇬🇧 Libra esterlina (GBP-BRL)</option>
+      <option value="ARS-BRL">🇦🇷 Peso argentino (ARS-BRL)</option>
+      <option value="CAD-BRL">🇨🇦 Dólar canadense (CAD-BRL)</option>
+      <option value="AUD-BRL">🇦🇺 Dólar australiano (AUD-BRL)</option>
+      <option value="JPY-BRL">🇯🇵 Iene japonês (JPY-BRL)</option>
+      <option value="CHF-BRL">🇨🇭 Franco suíço (CHF-BRL)</option>
+    </optgroup>
+    <optgroup label="🪙 Criptomoedas">
+      <option value="BTC-BRL">₿ Bitcoin (BTC-BRL)</option>
+      <option value="ETH-BRL">Ξ Ethereum (ETH-BRL)</option>
+      <option value="LTC-BRL">Ł Litecoin (LTC-BRL)</option>
+    </optgroup>
+  </select>
+  <button class="btn btn-primary" onclick="buscarCotacao()">Consultar</button>
+</div>
+
+    <div class="cotacao-result" id="cotacao-result">
+      <div class="cotacao-par" id="res-par"></div>
+      <div class="cotacao-valor" id="res-valor"></div>
+      <div class="cotacao-meta">
+        <span>VENDA: <span id="res-venda"></span></span>
+        <span id="res-variacao"></span>
+        <span id="res-hora"></span>
+      </div>
+      <div style="margin-top:1rem">
+        <button class="btn btn-outline btn-sm" onclick="adicionarFavoritaRapido()">⭐ Favoritar</button>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="toast"></div>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+
+  <script src="{% static 'js/base.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

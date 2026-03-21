@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CambioTrack — Histórico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+
+  <nav class="sidebar">
+  <div class="sidebar-logo">Cambio<span>Track</span></div>
+  <a class="nav-item" href="/dashboard/"><i data-lucide="layout-dashboard" class="nav-icon"></i> Dashboard</a>
+  <a class="nav-item" href="/favoritas/"><i data-lucide="star" class="nav-icon"></i> Favoritas</a>
+  <a class="nav-item" href="/alertas/"><i data-lucide="bell" class="nav-icon"></i> Alertas</a>
+  <a class="nav-item active" href="/historico/"><i data-lucide="clock" class="nav-icon"></i> Histórico</a>
+  <div class="sidebar-bottom">
+    <div class="user-info" id="sidebar-user"></div>
+    <button class="btn btn-outline" onclick="doLogout()">Sair</button>
+  </div>
+</nav>
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-title">Histórico <span>//</span></div>
+      <div class="page-desc">todas as suas consultas</div>
+    </div>
+
+    <div class="card">
+      <div id="historico-list"></div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+  
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+  <script src="{% static 'js/base.js' %}"></script>
+  <script src="{% static 'js/historico.js' %}"></script>
+</body>
+</html>
