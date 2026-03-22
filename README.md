@@ -190,6 +190,7 @@ docker-compose down
 |--------|----------|-----------|------|
 | GET | `/api/favoritas/` | Lista moedas favoritas | ✅ |
 | POST | `/api/favoritas/` | Adiciona moeda favorita | ✅ |
+| PUT | `/api/favoritas/<id>/update/` | Atualiza apelido de uma favorita | ✅ |
 | DELETE | `/api/favoritas/<id>/` | Remove moeda favorita | ✅ |
 
 ### Alertas
@@ -266,6 +267,15 @@ Authorization: Bearer <token>
 {
     "par": "USD-BRL",
     "apelido": "Dólar"
+}
+```
+### Atualizar apelido de favorita
+```json
+PUT /api/favoritas/1/update/
+Authorization: Bearer 
+{
+    "par": "USD-BRL",
+    "apelido": "Dólar Americano"
 }
 ```
 
