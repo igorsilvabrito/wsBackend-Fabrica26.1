@@ -9,12 +9,10 @@ urlpatterns = [
 
     path('favoritas/', views.MoedaFavoritaListCreateView.as_view()),
     path('favoritas/<int:pk>/', views.MoedaFavoritaDestroyView.as_view()),
+    path('favoritas/<int:pk>/update/', views.MoedaFavoritaUpdateView.as_view()),  # ← adicione isso
 
     path('cotacao/<str:par>/', views.CotacaoView.as_view()),
-
-
     path('historico/', views.HistoricoView.as_view()),
-
     path('alertas/', views.AlertaListCreateView.as_view()),
     path('alertas/<int:pk>/', views.AlertaDestroyView.as_view()),
 ]

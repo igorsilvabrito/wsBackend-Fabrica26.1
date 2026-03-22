@@ -15,15 +15,31 @@ async function loadFavoritas() {
         <td><span class="badge badge-purple">${f.par}</span></td>
         <td>${f.apelido || "—"}</td>
         <td>${new Date(f.criado_em).toLocaleDateString("pt-BR")}</td>
-        <td><button class="btn btn-danger" onclick="removerFavorita(${f.id})">Remover</button></td>
+        <td style="display:flex;gap:0.5rem">
+          <button class="btn btn-outline btn-sm" onclick="editarApelido(${f.id}, '${f.apelido}', '${f.par}')">Editar</button>
+          <button class="btn btn-danger" onclick="removerFavorita(${f.id})">Remover</button>
+        </td>
       </tr>`).join("")}
     </tbody></table>`;
 }
 
+async function editarApelido(id, apelidoAtual, par) {
+  const novoApelido = prompt("Novo apelido:", apelidoAtual);
+  if (novoApelido === null) return;
+
+  const data = await api(`/favoritas/${id}/update/`, {
+    method: "PUT",
+    body: JSON.stringify({ par: par, apelido: novoApelido })
+  });
+
+  if (data?.id) { toast("Apelido atualizado!"); loadFavoritas(); }
+  else toast("Erro ao atualizar.", "error");
+}
+
 async function adicionarFavorita() {
-  const par = document.getElementById("fav-par").value.trim().toUpperCase();
+  const par = document.getElementById("fav-par").value;
   const apelido = document.getElementById("fav-apelido").value.trim();
-  if (!par) return toast("Digite um par.", "error");
+  if (!par) return toast("Selecione um par.", "error");
 
   const data = await api("/favoritas/", {
     method: "POST",

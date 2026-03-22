@@ -121,5 +121,10 @@ class AlertaDestroyView(generics.DestroyAPIView):
     def get_queryset(self):
         return Alerta.objects.filter(usuario=self.request.user)
     
+class MoedaFavoritaUpdateView(generics.UpdateAPIView):
+    serializer_class = MoedaFavoritaSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return MoedaFavorita.objects.filter(usuario=self.request.user)
 
