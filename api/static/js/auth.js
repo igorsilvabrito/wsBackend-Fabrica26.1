@@ -3,9 +3,9 @@ const BASE_URL = "http://localhost:8000/api";
 function switchTab(tab) {
   const isLogin = tab === "login";
   document.getElementById("tab-btn-login").classList.toggle("active", isLogin);
-  document.getElementById("tab-btn-register").classList.toggle("active", !isLogin);
+  document.getElementById("tab-btn-Registro").classList.toggle("active", !isLogin);
   document.getElementById("tab-login").style.display = isLogin ? "block" : "none";
-  document.getElementById("tab-register").style.display = isLogin ? "none" : "block";
+  document.getElementById("tab-Registro").style.display = isLogin ? "none" : "block";
   hideError();
 }
 
@@ -70,7 +70,7 @@ async function doLogin() {
       storageSet("access", data.access);
       storageSet("refresh", data.refresh);
       storageSet("username", username);
-      window.location.href = "/dashboard/";
+      window.location.href = "/painel/";
     } else {
       showError("Usuário ou senha incorretos.");
     }
@@ -81,7 +81,7 @@ async function doLogin() {
   }
 }
 
-async function doRegister() {
+async function doRegistro() {
   hideError();
   const username = document.getElementById("reg-username").value.trim();
   const email = document.getElementById("reg-email").value.trim();
@@ -90,10 +90,10 @@ async function doRegister() {
   if (!username || !password) return showError("Usuário e senha são obrigatórios.");
   if (password.length < 6) return showError("A senha deve ter pelo menos 6 caracteres.");
 
-  setLoading("btn-register", true, "Criar conta");
+  setLoading("btn-Registro", true, "create conta");
 
   try {
-    const res = await fetch(`${BASE_URL}/register/`, {
+    const res = await fetch(`${BASE_URL}/Registro/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, password }),
@@ -111,17 +111,17 @@ async function doRegister() {
   } catch (err) {
     showError("Erro de conexão. Verifique se o servidor está rodando.");
   } finally {
-    setLoading("btn-register", false, "Criar conta");
+    setLoading("btn-Registro", false, "create conta");
   }
 }
 
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Enter") return;
   const loginVisible = document.getElementById("tab-login").style.display !== "none";
-  loginVisible ? doLogin() : doRegister();
+  loginVisible ? doLogin() : doRegistro();
 });
 
 
 if (storageGet("access")) {
-  window.location.href = "/dashboard/";
+  window.location.href = "/painel/";
 }

@@ -21,7 +21,7 @@ async function loadAlertas() {
     </tbody></table>`;
 }
 
-async function criarAlerta() {
+async function createAlerta() {
   const par = document.getElementById("alerta-par").value.trim().toUpperCase();
   const tipo = document.getElementById("alerta-tipo").value;
   const valor_referencia = document.getElementById("alerta-valor").value;
@@ -38,7 +38,7 @@ async function criarAlerta() {
     document.getElementById("alerta-valor").value = "";
     loadAlertas();
   } else {
-    toast("Erro ao criar alerta.", "error");
+    toast("Erro ao create alerta.", "error");
   }
 }
 

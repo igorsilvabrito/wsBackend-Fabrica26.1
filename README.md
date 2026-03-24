@@ -48,17 +48,17 @@ wsBackend/
 │   │   ├── css/
 │   │   │   ├── auth.css
 │   │   │   ├── base.css
-│   │   │   └── dashboard.css
+│   │   │   └── painel.css
 │   │   └── js/
 │   │       ├── auth.js
 │   │       ├── base.js
-│   │       ├── dashboard.js
+│   │       ├── painel.js
 │   │       ├── favoritas.js
 │   │       ├── alertas.js
 │   │       └── historico.js
 │   ├── templates/
 │   │   ├── auth.html
-│   │   ├── dashboard.html
+│   │   ├── painel.html
 │   │   ├── favoritas.html
 │   │   ├── alertas.html
 │   │   └── historico.html
@@ -159,7 +159,7 @@ docker-compose down
 | Página | URL | Descrição |
 |--------|-----|-----------|
 | Login/Cadastro | `/` | Autenticação do usuário |
-| Dashboard | `/dashboard/` | Consulta cotações em tempo real |
+| Painel | `/painel/` | Consulta cotações em tempo real |
 | Favoritas | `/favoritas/` | Gerencia moedas favoritas |
 | Alertas | `/alertas/` | Configura alertas de preço |
 | Histórico | `/historico/` | Visualiza consultas anteriores |
@@ -172,7 +172,7 @@ docker-compose down
 
 | Método | Endpoint | Descrição | Auth |
 |--------|----------|-----------|------|
-| POST | `/api/register/` | Criar conta | ❌ |
+| POST | `/api/Registro/` | create conta | ❌ |
 | POST | `/api/token/` | Login — retorna access e refresh token | ❌ |
 | POST | `/api/token/refresh/` | Renovar access token | ❌ |
 
@@ -234,9 +234,9 @@ POST /api/token/refresh/
 
 ## 📦 Exemplos de Requisição
 
-### Criar conta
+### create conta
 ```json
-POST /api/register/
+POST /api/Registro/
 {
     "username": "joao",
     "email": "joao@email.com",
@@ -269,7 +269,7 @@ Authorization: Bearer <token>
 }
 ```
 
-### Criar alerta
+### create alerta
 ```json
 POST /api/alertas/
 Authorization: Bearer <token>

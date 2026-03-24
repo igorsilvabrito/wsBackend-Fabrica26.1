@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import MoedaFavorita, HistoricoCotacao, Alerta
 from .serializers import (
-    RegisterSerializer,
+    RegistroSerializer,
     MoedaFavoritaSerializer,
     HistoricoCotacaoSerializer,
     AlertaSerializer,
@@ -29,8 +29,8 @@ def buscar_cotacao(par):
 def auth_view(request):
     return render(request, 'auth.html')
 
-def dashboard_view(request):
-    return render(request, 'dashboard.html')
+def painel_view(request):
+    return render(request, 'painel.html')
 def favoritas_view(request):
     return render(request, 'favoritas.html')
 
@@ -40,8 +40,8 @@ def alertas_view(request):
 def historico_view(request):
     return render(request, 'historico.html')
 
-class RegisterView(generics.CreateAPIView):
-    serializer_class = RegisterSerializer
+class RegistroView(generics.CreateAPIView):
+    serializer_class = RegistroSerializer
     permission_classes = [AllowAny]
 
 class MoedaFavoritaListCreateView(generics.ListCreateAPIView):
